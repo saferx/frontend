@@ -14,7 +14,11 @@ export default function MintNewPrescription() {
 
 	const beginMint = () => {
 		mint(patientAddressInput, medicationsToAdd)
-			.then(_ => setMedicationsToAdd([]))
+			.then(_ => {
+				setMedicationsToAdd([])
+				setMedicineBeingAdded(emptyMedicineBeingAdded)
+				setPatientAddressInput('')
+			})
 			.catch(e => console.error(e))
 	}
 
