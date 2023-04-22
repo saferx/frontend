@@ -15,7 +15,7 @@ export default function RecentPrescriptionsGrid(props: RecentPrescriptionsProps)
 			{!!prescriptions && (
 				<div className="flex w-full">
 					<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 z-10 gap-4 hide-scrollbar overflow-scroll w-full max-w-full">
-						{prescriptions.map((p) => (
+						{prescriptions.sort(p => p.timestamp).reverse().map((p) => (
 							<div key={p._id} className="group flex flex-col">
 								<button
 									onClick={() => props.setSelected(p)}

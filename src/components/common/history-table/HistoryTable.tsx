@@ -36,7 +36,7 @@ export default function HistoryTable(props: HistoryComponentProps) {
 				<th className="py-3">Quantity</th>
 			</thead>
 			<tbody>
-				{props.history.map((historyItem, idx) => (
+				{props.history.sort(h => h.timestamp).reverse().map((historyItem, idx) => (
 				<tr key={idx}>
 					<td className="py-2">{relativeToNow(historyItem.timestamp)}</td>
 					<td className="py-2">{historyItem.tokenId}</td>
