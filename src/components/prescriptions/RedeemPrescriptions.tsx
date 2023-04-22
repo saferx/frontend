@@ -202,7 +202,7 @@ export default function RedeemPrescriptions(props: RedeemPrescriptionsProps) {
 						<>
 							<button
 								onClick={() => setRedeemAmounts(null)}
-								className="with-bg-0 with-hover with-transition px-3 py-2 rounded-md text-sm"
+								className="with-bg-2 with-hover with-transition px-3 py-2 rounded-md text-sm"
 							>
 								Cancel
 							</button>
