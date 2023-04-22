@@ -53,23 +53,30 @@ export default function useUserRegistry() {
 		if (!wallet) return (async () => null)()
 		const metadataClient = new SequenceMetadataClient()
 		return (address ? getHistoryUtil(wallet, address) : getHistoryUtil(wallet))
-			.then(objs => objs.map((o: HistoryServerResponse): RxHistory => {
+			.then(objs =>  objs.map((o: HistoryServerResponse): RxHistory => {
 				const [tokenId, quantity, timestamp, patient, pharmacist] = o
 				return { quantity, patient, pharmacist, tokenId: tokenId.toNumber(), timestamp: timestamp.toNumber()}
 			}))
 			.then((objs: RxHistory[]) => {
+				console.log(objs)
 				const allIds = objs.map((o: RxHistory) => o.tokenId.toString())
 				const uniqueIds = Array.from(new Set(allIds))
 				return metadataClient.getTokenMetadata({ 
 					chainID: contractDetails.network, contractAddress: contractDetails.medicationAddress, tokenIDs: uniqueIds})
 					.then(res => res.tokenMetadata)
-					.then(res => res.map(r => parseTokenMetadata(r)))
+					.then(res => {
+						if (res) return res.map(r => parseTokenMetadata(r))
+						return uniqueIds.map(i => ({}))
+					})
 					.then(res => uniqueIds.reduce((o, k, i) => o.set(k, res[i]), new Map<string, MedicationMetadata>()))
 					.then(res => {
 						return objs.map(o => ({...o, ...(res.get(o.tokenId.toString()))}))
 					})
 			})
-			.catch(e => null)
+			.catch(e => {
+				console.log(e)
+				return null
+			})
 	}
 
 	return {
