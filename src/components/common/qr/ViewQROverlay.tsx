@@ -1,7 +1,7 @@
 import QRCode from "react-qr-code"
 import { toPng } from 'html-to-image';
 import { useCallback, useRef } from "react";
-import { IconX } from "@tabler/icons-react";
+import { IconClipboard, IconX } from "@tabler/icons-react";
 import useUserRegistry from "@/hooks/useUserRegistry";
 
 interface ViewQROverlayProps {
@@ -31,12 +31,16 @@ export default function ViewQROverlay(props: ViewQROverlayProps) {
 					<div className="text-lg font-medium">Your QR Code</div>
 					<button onClick={props.close}><IconX/></button>
 				</div>
-				<div className="opacity-50 text-sm">Display this QR code to your {role === 'Patient' ? 'doctor' : 'pharmacist'} to allow them to input your address easily. You can also download and send it to them if they are using a non-mobile platform.</div>
+				<div className="opacity-50 text-sm">Display this QR code to your {role === 'Pharmacist' ? 'customer' : 'doctor'} to allow them to input your address easily. You can also download and send it to them if they are using a non-mobile platform.</div>
 				<div ref={qrRef} className="w-full flex items-center justify-center p-4">
 					<QRCode value={walletAddress} className="dark:invert" id="qr-code-image"/>
 				</div>
 				<button onClick={download} className="rounded-lg px-4 py-3 bg-violet-500 hover:bg-violet-600 text-white mt-4">
 					Download
+				</button>
+				<button className="text-accent with-hover flex gap-1 w-full items-center justify-center" onClick={() => {navigator.clipboard.writeText(walletAddress)}}>
+					<IconClipboard/>
+					<div>Copy Wallet Address</div>
 				</button>
 			</div>
 		</div>
