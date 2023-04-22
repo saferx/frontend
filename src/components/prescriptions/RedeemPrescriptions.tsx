@@ -1,8 +1,9 @@
 
 import useMedications from "@/hooks/useMedications";
 import { ISOFromSeconds } from "@/utils/parseDate";
-import { IconMinus, IconPlus, IconX } from "@tabler/icons-react";
+import { IconMinus, IconPlus, IconScan, IconX } from "@tabler/icons-react";
 import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
+import ScanQRCodeOverlay from "../common/qr/ScanQROverlay";
 
 
 interface RedeemPrescriptionsProps {
@@ -27,6 +28,8 @@ export default function RedeemPrescriptions(props: RedeemPrescriptionsProps) {
 	const [pharmacistAddressInput, setPharmacistAddressInput] =
 		useState<string>("");
 
+	const [isQrScannerOpen, setIsQrScannerOpen] = useState(false)
+
 	const { redeem, getBalanceFor, prescriptions, setPrescriptions } = useMedications();
 
 	const initiateRedeemSelection = () => {
@@ -42,12 +45,14 @@ export default function RedeemPrescriptions(props: RedeemPrescriptionsProps) {
 			amount,
 			tokenId: selected.medications[i].tokenId,
 		}));
+		console.log(selected)
 		redeem(pharmacistAddressInput, tokensAndAmounts).then((_) => {
 			setPharmacistAddressInput("");
 			setSelected({
 				...selected,
-				medications: selected.medications.map((medication) => ({
-					...medication,
+				medications: selected.medications.map((m, i) => ({
+					...m,
+					quantity: (m.quantity || redeemAmounts[i]) - redeemAmounts[i]
 				})),
 			});
 		});
@@ -178,7 +183,13 @@ export default function RedeemPrescriptions(props: RedeemPrescriptionsProps) {
 				</div>
 				{redeemAmounts && (
 					<div className="mt-8 flex flex-col gap-3">
-						<div className="font-medium">Pharmacist Wallet Address</div>
+						<div className="w-full flex justify-between items-center">
+							<div className="font-medium">Pharmacist Wallet Address</div>
+							<button onClick={() => setIsQrScannerOpen(true)}>
+								<IconScan/>
+							</button>
+						</div>
+						
 						<input
 							value={pharmacistAddressInput}
 							onChange={(e) => setPharmacistAddressInput(e.currentTarget.value)}
@@ -220,6 +231,7 @@ export default function RedeemPrescriptions(props: RedeemPrescriptionsProps) {
 					)}
 				</div>
 			</div>
+			<ScanQRCodeOverlay key={pharmacistAddressInput} isOpen={isQrScannerOpen} address={pharmacistAddressInput} setAddressInput={setPharmacistAddressInput} close={() => setIsQrScannerOpen(false)}/>
 		</div>
 	);
 }
