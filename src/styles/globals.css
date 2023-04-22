@@ -5,4 +5,61 @@
 body {
 	@apply font-sans;
 	@apply m-0;
+	@apply text-slate-950 dark:text-slate-50;
+}
+
+.with-bg-1 {
+	@apply bg-white dark:bg-slate-800;
+}
+
+.with-bg-1.with-hover:hover {
+	@apply bg-slate-100 dark:bg-slate-700;
+}
+
+.with-bg-2 {
+	@apply bg-slate-100 dark:bg-slate-900;
+}
+
+.with-bg-2.with-hover:hover {
+	@apply bg-slate-200 dark:bg-slate-800;
+}
+
+.with-bg-3 {
+	@apply bg-slate-200 dark:bg-black;
+}
+
+.with-bg-3.with-hover:hover {
+	@apply bg-slate-300 dark:bg-slate-900;
+}
+
+.with-transition {
+	@apply transition-all duration-150;
+}
+
+.with-ring {
+	@apply ring-1 ring-slate-500/10;
+}
+
+.text-error {
+	@apply text-red-500;
+}
+
+.text-accent {
+	@apply text-violet-500;
+}
+
+.border-mono {
+	@apply border-slate-500/10;
+}
+
+.bg-accent {
+	@apply bg-violet-500
+}
+
+.bg-accent.with-hover:hover {
+	@apply bg-violet-600 dark:bg-violet-400
+}
+
+.bg-accent.semi-opaque {
+	@apply bg-violet-500/50;
 }
