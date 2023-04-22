@@ -48,6 +48,10 @@ body {
 	@apply text-violet-500;
 }
 
+.text-accent.with-hover {
+	@apply text-violet-600 dark:text-violet-400;
+}
+
 .border-mono {
 	@apply border-slate-500/10;
 }
@@ -62,4 +66,8 @@ body {
 
 .bg-accent.semi-opaque {
 	@apply bg-violet-500/50;
+}
+
+.button-accent {
+	@apply bg-violet-500 hover:bg-violet-600 hover:dark:bg-violet-400 disabled:opacity-40 text-slate-100 px-4 py-3 rounded text-sm;
 }
