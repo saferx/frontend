@@ -42,7 +42,7 @@ export default function UserRegistryContextProvider(props: PropsWithChildren) {
 			await sequence.initWallet(contractDetails.network)
 			const wallet = sequence.getWallet()
 			setWallet(wallet)
-			setIsConnected(wallet.isConnected)
+			setIsConnected(wallet.isConnected())
 		})()
 	}, [])
 
