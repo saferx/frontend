@@ -1,6 +1,9 @@
+import { SequenceMetadataClient } from "@0xsequence/metadata"
+import { contractDetails } from "@/constants/contractDetails"
 import { UserRegistryContext } from "@/providers/UserRegistryContextProvider"
 import { HistoryServerResponse } from "@/types/HistoryServerResponse"
 import { connectUtil, disconnectUtil } from "@/utils/connectionUtils"
+import { parseTokenMetadata } from "@/utils/parseTokenData"
 import { deleteUserUtil, getHistoryUtil, initUserUtil } from "@/utils/userRegistryUtils"
 import { useContext } from "react"
 
@@ -48,12 +51,25 @@ export default function useUserRegistry() {
 
 	const getHistory = (address?: string) => {
 		if (!wallet) return (async () => null)()
+		const metadataClient = new SequenceMetadataClient()
 		return (address ? getHistoryUtil(wallet, address) : getHistoryUtil(wallet))
 			.then(objs => objs.map((o: HistoryServerResponse): RxHistory => {
 				const [tokenId, quantity, timestamp, patient, pharmacist] = o
 				return { quantity, patient, pharmacist, tokenId: tokenId.toNumber(), timestamp: timestamp.toNumber()}
 			}))
-			.catch(e => console.error(e))
+			.then((objs: RxHistory[]) => {
+				const allIds = objs.map((o: RxHistory) => o.tokenId.toString())
+				const uniqueIds = Array.from(new Set(allIds))
+				return metadataClient.getTokenMetadata({ 
+					chainID: contractDetails.network, contractAddress: contractDetails.medicationAddress, tokenIDs: uniqueIds})
+					.then(res => res.tokenMetadata)
+					.then(res => res.map(r => parseTokenMetadata(r)))
+					.then(res => uniqueIds.reduce((o, k, i) => o.set(k, res[i]), new Map<string, MedicationMetadata>()))
+					.then(res => {
+						return objs.map(o => ({...o, ...(res.get(o.tokenId.toString()))}))
+					})
+			})
+			.catch(e => null)
 	}
 
 	return {

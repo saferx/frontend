@@ -8,3 +8,11 @@ interface Medication {
 	remarks?: string
 	pid?: string
 }
+
+interface MedicationMetadata {
+	name?: string
+	dosage?: number
+	timestamp?: number
+	remarks?: string
+	pid?: string
+}
