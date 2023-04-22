@@ -47,12 +47,13 @@ export default function useUserRegistry() {
 	}
 
 	const getHistory = (address?: string) => {
-		if (!wallet) return
-		(address ? getHistoryUtil(wallet, address) : getHistoryUtil(wallet))
+		if (!wallet) return (async () => null)()
+		return (address ? getHistoryUtil(wallet, address) : getHistoryUtil(wallet))
 			.then(objs => objs.map((o: HistoryServerResponse): RxHistory => {
 				const [tokenId, quantity, timestamp, patient, pharmacist] = o
 				return { quantity, patient, pharmacist, tokenId: tokenId.toNumber(), timestamp: timestamp.toNumber()}
 			}))
+			.catch(e => console.error(e))
 	}
 
 	return {

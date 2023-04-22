@@ -23,7 +23,7 @@ export const getUserUtil = async (wallet: Wallet, address?: string) => {
 	const signer = await wallet.getSigner()
 	const contract = new ethers.Contract(contractDetails.userRegistryAddress, UserRegistryABI, signer)
 	if (address) {
-		return await contract['getUser(address _address)'](address)
+		return await contract['getUser(address)'](address)
 	} else {
 		return await contract['getUser()']()
 	}
@@ -41,7 +41,7 @@ export const getHistoryUtil = async (wallet: Wallet, address?: string) => {
 	const signer = await wallet.getSigner()
 	const contract = new ethers.Contract(contractDetails.userRegistryAddress, UserRegistryABI, signer)
 	if (address) {
-		return await contract['getHistory(address _address)'](address)
+		return await contract['getHistory(address)'](address)
 	} else {
 		return await  contract['getHistory()']()
 	}
