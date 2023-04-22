@@ -13,7 +13,7 @@ interface MobileHeaderNavOverlayProps {
 export default function MobileHeaderNavOverlay(props: MobileHeaderNavOverlayProps) {
 	const { name, role, disconnect } = useUserRegistry()
 	return (
-		<div className="fixed w-full h-screen bg-black/80 dark:bg-slate-700/50 z-50 py-12 px-6 flex flex-col gap-4 justify-center items-start">
+		<div className="fixed top-0 left-0 w-full h-screen bg-black/80 z-50 py-12 px-6 flex flex-col gap-4 justify-center items-start">
 			<div className="w-full with-bg-1 py-8 rounded-lg  max-w-md flex flex-col gap-8">
 				<div className="flex justify-between items-center px-8">
 					<div className="text-lg">Navigation</div>

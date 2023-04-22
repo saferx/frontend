@@ -27,15 +27,15 @@ export default function MintNewPrescription() {
 			<div className="flex flex-col gap-8 items-start justify-start max-w-full">
 				<div className="text-3xl font-medium">Sign New Prescription</div>
 				<div className="grid grid-cols-1 lg:grid-cols-2 w-full gap-12">
-					<div className="with-bg-2 rounded-lg with-ring p-6 flex flex-col">
+					<div className="with-bg-1 rounded-lg with-ring p-6 flex flex-col">
 						<div className="flex justify-between items-center">
 							<div className="text-lg font-medium">Medications</div>
-							<button onClick={() => setMedicineBeingAdded(emptyMedicineBeingAdded)} className="with-bg-3 w-8 h-8 rounded-md with-hover with-transition flex items-center justify-center">
+							<button onClick={() => setMedicineBeingAdded(emptyMedicineBeingAdded)} className="with-bg-2 w-8 h-8 rounded-md with-hover with-transition flex items-center justify-center">
 								<IconPlus/>
 							</button>
 						</div>
 						{ medicineBeingAdded && (
-							<div className="with-bg-3 with-ring rounded-md px-4 py-8 mt-4 -mx-3 md:mx-0">
+							<div className="with-bg-2 with-ring rounded-md px-4 py-8 mt-4 -mx-3 md:mx-0">
 								<div className="flex justify-between items-center">
 									<div className="">New Medication</div>
 									<button onClick={() => setMedicineBeingAdded(null)} className="opacity-50 hover:opacity-70 with-transition"><IconX/></button>
@@ -43,21 +43,21 @@ export default function MintNewPrescription() {
 								<div className="flex flex-col mt-2 gap-4">
 									<div className="flex flex-col gap-2">
 										<div className="text-sm opacity-50">Name</div>
-										<input value={medicineBeingAdded.name} onChange={e => setMedicineBeingAdded({...medicineBeingAdded, name: e.currentTarget.value})} className="px-3 py-2 rounded-md text-sm w-full with-ring with-bg-2"/>
+										<input value={medicineBeingAdded.name} onChange={e => setMedicineBeingAdded({...medicineBeingAdded, name: e.currentTarget.value})} className="px-3 py-2 rounded-md text-sm w-full with-ring with-bg-1"/>
 									</div>
 									<div className="flex gap-4 w-full">
 										<div className="flex flex-col gap-2 w-full">
 											<div className="text-sm opacity-50">Amount</div>
-											<input value={medicineBeingAdded.amount} onChange={e => setMedicineBeingAdded({...medicineBeingAdded, amount: parseInt(e.currentTarget.value) || 0})} className="px-3 py-2 rounded-md text-sm w-full with-ring with-bg-2"/>
+											<input value={medicineBeingAdded.amount} onChange={e => setMedicineBeingAdded({...medicineBeingAdded, amount: parseInt(e.currentTarget.value) || 0})} className="px-3 py-2 rounded-md text-sm w-full with-ring with-bg-1"/>
 										</div>
 										<div className="flex flex-col gap-2 w-full">
 											<div className="text-sm opacity-50">Dosage (mg)</div>
-											<input value={medicineBeingAdded.dosage} onChange={e => setMedicineBeingAdded({...medicineBeingAdded, dosage: parseInt(e.currentTarget.value) || 0})} className="px-3 py-2 rounded-md text-sm w-full with-ring with-bg-2"/>
+											<input value={medicineBeingAdded.dosage} onChange={e => setMedicineBeingAdded({...medicineBeingAdded, dosage: parseInt(e.currentTarget.value) || 0})} className="px-3 py-2 rounded-md text-sm w-full with-ring with-bg-1"/>
 										</div>
 									</div>
 									<div className="flex flex-col gap-2">
 										<div className="text-sm opacity-50">Remarks</div>
-										<input value={medicineBeingAdded.remark} onChange={e => setMedicineBeingAdded({...medicineBeingAdded, remark: e.currentTarget.value})} className="px-3 py-2 rounded-md text-sm w-full with-ring with-bg-2"/>
+										<input value={medicineBeingAdded.remark} onChange={e => setMedicineBeingAdded({...medicineBeingAdded, remark: e.currentTarget.value})} className="px-3 py-2 rounded-md text-sm w-full with-ring with-bg-1"/>
 									</div>
 								</div>
 								<button disabled={!medicineBeingAdded.name.trim().length || medicineBeingAdded.dosage == 0 || medicineBeingAdded.amount == 0} onClick={() => {
@@ -76,7 +76,7 @@ export default function MintNewPrescription() {
 						</div>
 						<div className="flex flex-col w-full mt-4">
 							{medicationsToAdd.map((m, i) => (
-								<div key={`${m.name}_${i}`} className="-mx-6 px-6 py-3 with-bg-2 with-hover with-transition">
+								<div key={`${m.name}_${i}`} className="-mx-6 px-6 py-3 with-bg-1 with-hover with-transition">
 									<div className="flex justify-between items-center">
 										<div className="flex flex-col">
 											<div className="">{i + 1}. {m.name} ({m.dosage}mg) x{m.amount}</div>
@@ -98,7 +98,7 @@ export default function MintNewPrescription() {
 								<IconScan/>
 							</button>
 						</div>
-						<input value={patientAddressInput} onChange={e => setPatientAddressInput(e.currentTarget.value)} placeholder="0x.............................." className="with-bg-1 rounded-md w-full px-4 py-2 with-ring with-bg-2"/>
+						<input value={patientAddressInput} onChange={e => setPatientAddressInput(e.currentTarget.value)} placeholder="0x.............................." className="rounded-md w-full px-4 py-2 with-ring with-bg-1"/>
 						<button disabled={patientAddressInput === '' || !medicationsToAdd.length} onClick={beginMint} className="bg-violet-500 px-3 disabled:opacity-40 py-2 hover:bg-violet-600 with-transition text-slate-100 w-full mt-4 rounded-md"><div className="flex gap-2 w-full items-center justify-center"><IconSignature size={20}/> Sign & Mint</div></button>
 					</div>
 				</div>

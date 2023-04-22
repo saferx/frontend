@@ -39,7 +39,7 @@ export default function PatientRecords() {
 						onChange={e => setPatientAddressInput(e.currentTarget.value)}
 						value={patientAddressInput}
 						placeholder="0x................"
-						className="px-3 py-2 rounded-md with-ring w-full with-bg-2"
+						className="px-3 py-2 rounded-md with-ring w-full with-bg-1"
 					/>
 					<button
 						onClick={onClick}

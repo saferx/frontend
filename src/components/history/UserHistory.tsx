@@ -17,8 +17,8 @@ export default function UserHistory() {
 	}, [])
 
 	return (
-		<div className="flex flex-col space-y-4">
-			<div className="text-3xl font-medium">{role === 'Patient' ? 'Your Redemptions' : 'Received Redemptions'}</div>
+		<div className="flex flex-col w-full overflow-hidden">
+			<div className="text-3xl font-medium mb-4">{role === 'Patient' ? 'Your Redemptions' : 'Received Redemptions'}</div>
 			<HistoryTable history={history}/>
 		</div>
 	)

@@ -16,7 +16,7 @@ interface HistoryItem {
 export default function HistoryItemOverlay(props: ({ historyItem: HistoryItem, close: () => void})) {
 	console.log(props.historyItem)
 	return (
-		<div className="fixed top-0 left-0 p-4 w-screen h-screen bg-black/80 dark:bg-slate-700/50 z-50 flex items-center justify-center">
+		<div className="fixed top-0 left-0 mt-0 p-4 w-screen h-screen bg-black/80 z-50 flex items-center justify-center">
 			<div className="w-full max-w-md with-bg-1 px-8 py-12 rounded-lg flex flex-col gap-4">
 				<div className="flex justify-between items-center">
 					<div className="text-lg font-medium">Redemption Details</div>

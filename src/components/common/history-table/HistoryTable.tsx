@@ -43,28 +43,28 @@ export default function HistoryTable(props: HistoryComponentProps) {
 		</div>
 	)
 	return (
-		<>
-		<table className="table-auto overflow-scroll w-full">
+		<div className="w-full overflow-scroll hide-scrollbar">
+		<table className="table-auto w-full min-w-max">
 			<thead className="text-sm text-left uppercase opacity-40">
-				<th className="py-3">Time</th>
-				<th className="py-3">Medicine</th>
-				<th className="py-3">Quantity</th>
-				{ role === 'Pharmacist' && <th className="py-3">From Patient</th>}
-				{ role !== 'Pharmacist' && <th className="py-3">To Pharmacist</th>}
+				<th className="py-4 px-3">Time</th>
+				<th className="py-4 px-3">Medicine</th>
+				<th className="py-4 px-3">Quantity</th>
+				{ role === 'Pharmacist' && <th className="py-4 px-3">From Patient</th>}
+				{ role !== 'Pharmacist' && <th className="py-4 px-3">To Pharmacist</th>}
 			</thead>
 			<tbody>
 				{props.history.map((historyItem, idx) => (
-				<tr key={idx} className="with-bg-1 with-hover" onClick={() => setSelectedHistory(historyItem)}>
-					<td className="p-2">{relativeToNow(historyItem.timestamp)}</td>
-					<td className="p-2">{historyItem.name}</td>
-					<td className="p-2">{historyItem.quantity}</td>
-					{role === 'Pharmacist' && <td className="p-2">{historyItem.patient.slice(0,10)}...</td>}
-					{role !== 'Pharmacist' && <td className="p-2">{historyItem.pharmacist.slice(0,10)}...</td>}
+				<tr key={idx} className="with-bg-2 with-hover" onClick={() => setSelectedHistory(historyItem)}>
+					<td className="py-4 px-3 rounded-l-lg">{relativeToNow(historyItem.timestamp)}</td>
+					<td className="py-4 px-3">{historyItem.name}</td>
+					<td className="py-4 px-3">{historyItem.quantity}</td>
+					{role === 'Pharmacist' && <td className="py-4 px-3 rounded-r-lg">{historyItem.patient.slice(0,20)}...</td>}
+					{role !== 'Pharmacist' && <td className="py-4 px-3 rounded-r-lg">{historyItem.pharmacist.slice(0,20)}...</td>}
 				</tr>
 				))}
 			</tbody>
 		</table>
 		{selectedHistory && <HistoryItemOverlay close={() => setSelectedHistory(null)} historyItem={selectedHistory}/>}
-		</>
+		</div>
 	);
 }

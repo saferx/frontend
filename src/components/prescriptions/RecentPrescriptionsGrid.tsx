@@ -19,7 +19,7 @@ export default function RecentPrescriptionsGrid(props: RecentPrescriptionsProps)
 							<div key={p._id} className="group flex flex-col">
 								<button
 									onClick={() => props.setSelected(p)}
-									className="w-full aspect-square with-bg-2 rounded-lg flex items-center justify-center"
+									className="w-full aspect-square with-bg-3 rounded-lg flex items-center justify-center"
 								>
 									<div className="opacity-25 flex gap-2 items-center justify-center">
 										<IconPill size={28} />
