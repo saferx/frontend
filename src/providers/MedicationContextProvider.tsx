@@ -2,7 +2,7 @@ import { Wallet } from "0xsequence";
 import { StateSetter } from "@/types/StateSetter";
 import { PropsWithChildren, createContext, useContext, useEffect, useMemo, useState } from "react";
 import { UserRegistryContext } from "./UserRegistryContextProvider";
-import { SequenceIndexerClient } from "0xsequence/dist/declarations/src/indexer";
+import { SequenceIndexerClient } from "@0xsequence/indexer";
 import { contractDetails } from "@/constants/contractDetails";
 import { parseTokenData } from "@/utils/parseTokenData";
 import { makePrescriptionList } from "@/utils/makePrescriptionList";
