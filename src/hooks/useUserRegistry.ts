@@ -72,6 +72,7 @@ export default function useUserRegistry() {
 					.then(res => {
 						return objs.map(o => ({...(res.get(o.tokenId.toString())), ...o,}))
 					})
+					.then(res => res.sort(t => t.timestamp).reverse())
 			})
 			.catch(e => {
 				console.log(e)

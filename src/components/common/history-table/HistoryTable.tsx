@@ -53,7 +53,7 @@ export default function HistoryTable(props: HistoryComponentProps) {
 				{ role !== 'Pharmacist' && <th className="py-3">To Pharmacist</th>}
 			</thead>
 			<tbody>
-				{props.history.sort(h => h.timestamp).reverse().map((historyItem, idx) => (
+				{props.history.map((historyItem, idx) => (
 				<tr key={idx} className="with-bg-1 with-hover" onClick={() => setSelectedHistory(historyItem)}>
 					<td className="p-2">{relativeToNow(historyItem.timestamp)}</td>
 					<td className="p-2">{historyItem.name}</td>
