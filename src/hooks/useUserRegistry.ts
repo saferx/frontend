@@ -70,7 +70,7 @@ export default function useUserRegistry() {
 					})
 					.then(res => uniqueIds.reduce((o, k, i) => o.set(k, res[i]), new Map<string, MedicationMetadata>()))
 					.then(res => {
-						return objs.map(o => ({...o, ...(res.get(o.tokenId.toString()))}))
+						return objs.map(o => ({...(res.get(o.tokenId.toString())), ...o,}))
 					})
 			})
 			.catch(e => {

@@ -17,6 +17,11 @@ export const UserRegistryABI = [
 				"type": "uint32"
 			},
 			{
+				"internalType": "uint256",
+				"name": "_timestamp",
+				"type": "uint256"
+			},
+			{
 				"internalType": "address",
 				"name": "_patient",
 				"type": "address"

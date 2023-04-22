@@ -321,6 +321,11 @@ export const MedicationABI = [
 				"internalType": "uint32",
 				"name": "_amount",
 				"type": "uint32"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_timestamp",
+				"type": "uint256"
 			}
 		],
 		"name": "redeem",

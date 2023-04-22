@@ -1,6 +1,6 @@
 export const contractDetails = ({
-	userRegistryAddress: '0x1a936596341F8a7dca2e44C769E792403A222DD9',
-	medicationAddress: '0xA68D2d7cB10369Dd3F726A1f8AC96c3C7b63d9d5',
+	userRegistryAddress: '0xf92bf59B6A1C7d2945B3c3DdFDA404796aCcB0c8',
+	medicationAddress: '0xfF1093F568Aa556dBFaB68D2F73aDaE056850a64',
 	network: 'mumbai',
 	indexer: 'https://mumbai-indexer.sequence.app'
 })
