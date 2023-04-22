@@ -7,7 +7,7 @@ export function generatePid(): string {
 	const charactersLength = characters.length;
 	const bytes = randomBytes(LENGTH);
 	let result = new Array(LENGTH);
-	for (let i = 0; i < length; i++) {
+	for (let i = 0; i < LENGTH; i++) {
 		result[i] = characters[bytes[i] % charactersLength];
 	}
 	return result.join('');
