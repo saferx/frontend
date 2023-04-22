@@ -1,6 +1,6 @@
 
 import useUserRegistry from "@/hooks/useUserRegistry";
-import { formattedFromSeconds } from "@/utils/parseDate";
+import { relativeToNow } from "@/utils/parseDate";
 import React from "react";
 
 interface HistoryComponentProps {
@@ -38,7 +38,7 @@ export default function HistoryTable(props: HistoryComponentProps) {
 			<tbody>
 				{props.history.map((historyItem, idx) => (
 				<tr key={idx}>
-					<td className="py-2">{formattedFromSeconds(historyItem.timestamp)}</td>
+					<td className="py-2">{relativeToNow(historyItem.timestamp)}</td>
 					<td className="py-2">{historyItem.tokenId}</td>
 					{role !== 'Patient' && <td className="py-2">{historyItem.patient.slice(0,10)}...</td>}
 					{role !== 'Pharmacist' && <td className="py-2">{historyItem.pharmacist.slice(0,10)}...</td>}

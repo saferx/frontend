@@ -1,5 +1,5 @@
 import useMedications from "@/hooks/useMedications";
-import { formattedFromSeconds } from "@/utils/parseDate";
+import { relativeToNow } from "@/utils/parseDate";
 import { IconGlass, IconPill } from "@tabler/icons-react";
 import { Dispatch, SetStateAction } from "react";
 
@@ -33,7 +33,7 @@ export default function RecentPrescriptionsGrid(props: RecentPrescriptionsProps)
 									{p._id}
 								</div>
 								<div className="opacity-30 cursor-default group-hover:opacity-50 with-transition text-sm">
-									{formattedFromSeconds(p.timestamp)}
+									{relativeToNow(p.timestamp)}
 								</div>
 							</div>
 						))}
