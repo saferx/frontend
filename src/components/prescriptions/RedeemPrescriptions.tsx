@@ -94,7 +94,7 @@ export default function RedeemPrescriptions(props: RedeemPrescriptionsProps) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [selected]);
 	return (
-		<div className="fixed p-6 md:p-12 z-40 left-0 w-full md:max-w-lg md:right-0 md:left-auto md:bottom-0">
+		<div className="-mt-96 md:fixed p-6 md:p-12 z-40 left-0 w-full md:max-w-lg md:right-0 md:left-auto md:bottom-0">
 			<div className="px-6 py-9 with-bg-1 rounded-lg with-ring shadow-xl">
 				<div className="flex justify-between items-center">
 					<div className="font-semibold text-lg">Your Prescription</div>
