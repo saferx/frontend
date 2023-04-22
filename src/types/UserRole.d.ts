@@ -1,0 +1,1 @@
+type UserRole = "Patient" | "Doctor" | "Pharmacist"

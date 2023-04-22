@@ -1,0 +1,1 @@
+type LazyOptional<T> = Lazy<Optional<T>>
